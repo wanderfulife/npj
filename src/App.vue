@@ -10,7 +10,7 @@ const router = useRouter();
       <router-link to="/home">Home</router-link> |
       <router-link to="/map">Map</router-link> |
       <router-link to="/report">Report</router-link>
-      <router-link to="/" class="login-btn">Login / Sign Up</router-link>
+      <router-link to="/" class="login-btn">Loggin / Sign Up</router-link>
     </nav>
     <router-view />  <!-- This will display the active route's component -->
   </div>
