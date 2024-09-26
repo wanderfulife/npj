@@ -1,4 +1,6 @@
 // src/store/npcStore.ts
+
+// test commit 2
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
