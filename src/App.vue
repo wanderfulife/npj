@@ -7,66 +7,96 @@ const router = useRouter();
 <template>
   <div id="app">
     <nav>
-      <router-link to="/home">Home</router-link> |
-      <router-link to="/map">Map</router-link> |
-      <router-link to="/report">Report</router-link>
-      <router-link to="/" class="login-btn">Loggin / Sign Up</router-link>
+      <router-link to="/home" class="nav-link">Home</router-link>
+      <router-link to="/map" class="nav-link">Map</router-link>
+      <router-link to="/report" class="nav-link">Report</router-link>
+      <router-link to="/" class="login-btn">Login</router-link>
     </nav>
-    <router-view />  <!-- This will display the active route's component -->
+    <router-view></router-view>
   </div>
 </template>
 
-<style scoped>
+<script setup lang="ts">
+// No setup needed for now
+</script>
+
+<style>
+:root {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --accent-color: #e74c3c;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
 #app {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 20px;
 }
 
 nav {
-  background-color: #333;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 0;
+  margin-bottom: 20px;
 }
 
-nav a {
-  color: #fff;
+.nav-link {
+  color: var(--text-color);
   text-decoration: none;
-  margin: 0 1rem;
-  font-weight: bold;
+  margin-right: 15px;
 }
 
-nav a:hover {
-  color: #ffcc00;
-}
-
-nav a.active {
-  color: #ffcc00;
+.nav-link:hover {
+  color: var(--primary-color);
 }
 
 .login-btn {
-  background-color: #ffcc00;
-  color: #333;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 8px 16px;
+  border-radius: 20px;
   text-decoration: none;
+  transition: background-color 0.3s;
 }
 
 .login-btn:hover {
-  background-color: #ffd633;
+  background-color: #2980b9;
+}
+
+h1, h2, h3 {
+  color: var(--primary-color);
+}
+
+button {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #27ae60;
+}
+
+input {
+  background-color: #333;
+  color: var(--text-color);
+  border: 1px solid #444;
+  padding: 8px;
+  border-radius: 4px;
 }
 </style>
