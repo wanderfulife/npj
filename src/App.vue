@@ -1,23 +1,21 @@
-<script setup>
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-</script>
-<!-- src/App.vue -->
 <template>
   <div id="app">
     <nav>
-      <router-link to="/home" class="nav-link">Home</router-link>
-      <router-link to="/map" class="nav-link">Map</router-link>
-      <router-link to="/report" class="nav-link">Report</router-link>
-      <router-link to="/" class="login-btn">Login</router-link>
+      <router-link to="/home" class="logo-link">
+        <img src="./assets/42-logo.png" alt="42 Logo" class="logo" />
+      </router-link>
+      <div class="nav-links">
+        <router-link to="/map" class="nav-link">Map</router-link>
+        <router-link to="/report" class="nav-link">Report</router-link>
+        <router-link to="/" class="login-btn">Login</router-link>
+      </div>
     </nav>
     <router-view></router-view>
   </div>
 </template>
 
 <script setup lang="ts">
-// No setup needed for now
+// No setup needed
 </script>
 
 <style>
@@ -51,10 +49,25 @@ nav {
   margin-bottom: 20px;
 }
 
+.logo-link {
+  text-decoration: none;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
 .nav-link {
   color: var(--text-color);
   text-decoration: none;
   margin-right: 15px;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
@@ -67,11 +80,12 @@ nav {
   padding: 8px 16px;
   border-radius: 20px;
   text-decoration: none;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .login-btn:hover {
   background-color: #2980b9;
+  transform: scale(1.05);
 }
 
 h1, h2, h3 {
@@ -85,11 +99,12 @@ button {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
   background-color: #27ae60;
+  transform: scale(1.05);
 }
 
 input {
