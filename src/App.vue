@@ -2,12 +2,19 @@
   <div id="app">
     <nav>
       <router-link to="/home" class="logo-link">
-        <img src="./assets/42-logo.png" alt="42 Logo" class="logo" />
+        <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0H100V100H75V25H50V75H25V25H0V0Z" fill="#8E44AD"/>
+        </svg>
       </router-link>
       <div class="nav-links">
-        <router-link to="/map" class="nav-link">Map</router-link>
-        <router-link to="/report" class="nav-link">Report</router-link>
-        <router-link to="/" class="login-btn">Login</router-link>
+        <template v-if="userStore.isAuthenticated">
+          <router-link to="/map" class="nav-link">Map</router-link>
+          <router-link to="/report" class="nav-link">Report</router-link>
+          <router-link to="/profile" class="nav-link">Profile</router-link>
+          <span class="username">{{ userStore.username }}</span>
+          <a href="#" @click.prevent="logout" class="logout-btn">Logout</a>
+        </template>
+        <router-link v-else to="/login" class="login-btn">Login</router-link>
       </div>
     </nav>
     <router-view></router-view>
@@ -15,7 +22,16 @@
 </template>
 
 <script setup lang="ts">
-// No setup needed
+import { useRouter } from 'vue-router';
+import { useUserStore } from './stores/userStore';
+
+const router = useRouter();
+const userStore = useUserStore();
+
+const logout = () => {
+  userStore.logout();
+  router.push('/login');
+};
 </script>
 
 <style>
@@ -47,6 +63,11 @@ nav {
   align-items: center;
   padding: 10px 0;
   margin-bottom: 20px;
+}
+
+.logo-link svg {
+  width: 50px;
+  height: 50px;
 }
 
 .logo-link {
@@ -113,5 +134,24 @@ input {
   border: 1px solid #444;
   padding: 8px;
   border-radius: 4px;
+}
+
+.username {
+  color: var(--primary-color);
+  margin-right: 15px;
+}
+
+.logout-btn {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
 }
 </style>

@@ -9,7 +9,6 @@
       </div>
     </div>
     <div class="map-legend">
-      <h3>Legend</h3>
       <ul>
         <li><span class="legend-dot"></span> NPC Location</li>
       </ul>

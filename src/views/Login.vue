@@ -1,25 +1,55 @@
 <template>
   <div class="login-container">
     <div class="login-box">
-      <h1>{{ isLogin ? 'Login' : 'Sign Up' }}</h1>
-      <form @submit.prevent="handleSubmit">
-        <input v-model="email" type="email" placeholder="Email (@student.42.fr)" required pattern=".*@student\.42\.fr$" />
-        <input v-model="password" type="password" placeholder="Password" required />
-        <button type="submit" class="submit-btn">{{ isLogin ? 'Login' : 'Sign Up' }}</button>
+      <h1>Login</h1>
+      <form @submit.prevent="handleSubmit" autocomplete="off">
+        <input 
+          v-model="username" 
+          type="text" 
+          placeholder="Username" 
+          required 
+          autocomplete="off"
+          :readonly="isInputReadOnly"
+          @focus="isInputReadOnly = false"
+        />
+        <input 
+          v-model="password" 
+          type="password" 
+          placeholder="Password" 
+          required
+          autocomplete="off"
+          :readonly="isInputReadOnly"
+          @focus="isInputReadOnly = false"
+        />
+        <button type="submit" class="submit-btn">Login</button>
       </form>
-      <p>
-        {{ isLogin ? "Don't have an account?" : "Already have an account?" }}
-        <a href="#" @click.prevent="toggleMode">
-          {{ isLogin ? 'Sign Up' : 'Login' }}
-        </a>
-      </p>
       <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-// ... (previous script content remains the same)
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useUserStore } from '../stores/userStore';
+
+const router = useRouter();
+const userStore = useUserStore();
+
+const username = ref('');
+const password = ref('');
+const errorMessage = ref('');
+const isInputReadOnly = ref(true);
+
+const handleSubmit = async () => {
+  errorMessage.value = '';
+  if (username.value === 'joey' && password.value === 'jowander') {
+    userStore.login('joey');
+    router.push('/home');
+  } else {
+    errorMessage.value = 'Invalid credentials';
+  }
+};
 </script>
 
 <style scoped>
@@ -36,19 +66,6 @@
   padding: 30px;
   width: 300px;
   box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(52, 152, 219, 0.5);
-  }
-  100% {
-    box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
-  }
 }
 
 form {
@@ -64,6 +81,8 @@ input, .submit-btn {
   background-color: #333;
   color: #ffffff;
   transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 input:focus {
@@ -83,19 +102,17 @@ input:focus {
   transform: scale(1.05);
 }
 
-a {
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-a:hover {
-  color: #2980b9;
-  text-decoration: underline;
-}
-
 .error-message {
   color: var(--accent-color);
   margin-top: 10px;
+}
+
+/* Prevent autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #ffffff !important;
 }
 </style>

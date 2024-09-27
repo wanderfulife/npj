@@ -1,35 +1,45 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';   // Home page for NPC creation or overview
-import Map from '../views/Map.vue';     // Map where NPCs interact
-import Report from '../views/Report.vue'; // Report page showing NPC activities
-import Login from '../views/Login.vue'; // Import the Login component
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
+import Profile from '../views/Profile.vue'
+import Map from '../views/Map.vue'
+import Report from '../views/Report.vue'
 
-const routes = [
+const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    redirect: '/login'
+  },
+  {
+    path: '/login',
     name: 'Login',
-    component: Login, // Set the login page as the default route
+    component: Login
   },
   {
     path: '/home',
     name: 'Home',
-    component: Home,  // The home or NPC creation page
+    component: Home
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   },
   {
     path: '/map',
     name: 'Map',
-    component: Map,  // The map view where users can see NPCs interacting
+    component: Map
   },
   {
     path: '/report',
     name: 'Report',
-    component: Report,  // The daily report page showing what NPCs did
-  },
-];
+    component: Report
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
-});
+  routes
+})
 
-export default router;
+export default router
