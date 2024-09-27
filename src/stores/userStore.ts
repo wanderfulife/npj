@@ -1,7 +1,13 @@
 import { defineStore } from 'pinia';
 
+interface UserState {
+  isAuthenticated: boolean;
+  username: string;
+  email: string;
+}
+
 export const useUserStore = defineStore('user', {
-  state: () => ({
+  state: (): UserState => ({
     isAuthenticated: false,
     username: '',
     email: '',
