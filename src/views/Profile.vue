@@ -2,18 +2,20 @@
   <div class="profile-container">
     <h1>Profile</h1>
     <div class="profile-info">
-      <p><strong>Username:</strong> {{ username }}</p>
-      <p><strong>Email:</strong> {{ email || 'Not provided' }}</p>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> {{ user.email || 'Not provided' }}</p>
       <p><strong>Member since:</strong> {{ memberSince }}</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useUserStore } from '../stores/userStore';
+import { ref, computed } from 'vue';
 
-const userStore = useUserStore();
+const user = ref({
+  username: '',
+  email: ''
+});
 
 const memberSince = computed(() => {
   // Pour l'exemple, on utilise une date fixe. Dans une vraie application, 

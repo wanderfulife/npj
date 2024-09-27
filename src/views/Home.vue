@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { NpcCreator } from '../components/NpcCreator.vue';
+import NpcCreator from '../components/NpcCreator.vue';
 </script>
 
 <style scoped>
