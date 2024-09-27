@@ -46,7 +46,7 @@ const isInputReadOnly = ref(true);
 const handleSubmit = async () => {
   errorMessage.value = '';
   if (username.value === 'joey' && password.value === 'jowander') {
-    userStore.login('joey');
+    userStore.login(username.value, 'joey@example.com');
     router.push('/home');
   } else {
     errorMessage.value = 'Invalid credentials';
