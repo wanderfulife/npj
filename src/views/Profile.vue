@@ -2,8 +2,8 @@
   <div class="profile-container">
     <h1>Profile</h1>
     <div class="profile-info">
-      <p><strong>Username:</strong> {{ userStore.username }}</p>
-      <p><strong>Email:</strong> {{ userStore.email || 'Not provided' }}</p>
+      <p><strong>Username:</strong> {{ username }}</p>
+      <p><strong>Email:</strong> {{ email || 'Not provided' }}</p>
       <p><strong>Member since:</strong> {{ memberSince }}</p>
     </div>
   </div>
